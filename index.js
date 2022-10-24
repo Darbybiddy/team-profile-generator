@@ -2,6 +2,8 @@ const inquirer = require("inquirer")
 const Manager = require("./lib/Manager")
 const Engineer = require("./lib/Engineer")
 const Intern = require("./lib/Intern")
+const fs = require('fs')
+const generateHtml = require('./src/generate-html')
 const teamArr = []
 
 function createManager(){
@@ -82,5 +84,38 @@ function addEngineer(){
         teamArr.push(engineer)
         otherMembers()
     })
+}
+
+function addIntern(){
+    inquirer.prompt([
+        {
+            type: "input",
+            name: 'name',
+            message:"what is the Intern name?"
+        },
+        {
+            type: "input",
+            name: 'id',
+            message:"what is the Intern ID?"
+        },
+        {
+            type: "input",
+            name: 'email',
+            message:"what is the Intern email?"
+        },
+        {
+            type: "input",
+            name: 'school',
+            message:"what is the Interns school?"
+        } 
+    ]).then ((answers)=>{
+        const intern = new Intern(answers.name, answers.id, answers.email, answers.school)
+        teamArr.push(intern)
+        otherMembers()
+    })
+}
+
+function buildTeam(){
+fs.writeFileSync('./dist/index.html', generateHtml(teamArr),'utf8')
 }
 createManager()
