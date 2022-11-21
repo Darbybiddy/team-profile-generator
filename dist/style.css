@@ -1,0 +1,23 @@
+header{
+    background-color: rgb(143, 57, 57);
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.list-group{
+    text-decoration: none;
+    list-style: none;
+}
+
+.card-title{
+    background: rgb(67, 67, 236);
+    padding: 4px;
+    color: white;
+}
+
+.card-subtitle{
+    text-decoration:underline;
+}
+
